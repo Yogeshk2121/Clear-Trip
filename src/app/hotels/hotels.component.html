@@ -1,0 +1,44 @@
+<div class="container p-2 ms-4 mt-2 border">
+    <div class="row ">
+
+        <h4>Search Hotels</h4>
+        <p class="fs-bold">Enjoy Hussle free booking with Cleartrip</p>
+    </div>
+    <div class="row border border-primary rounded m-2 p-2">
+        <div class="col-md-4 ">
+            <div class="mb-3">
+                <label for="text">City</label>
+                <input type="text" class="form-control py-2" id="id1" name="cityName" [(ngModel)]="city">
+            </div>
+            
+        </div>
+        <div class="col-md-4">
+            <div class="mb-3">
+                <label for="text">Select Date</label>
+                <input type="text" id="id2" class="form-control" name="selDate" [(ngModel)]="selectedDate" (ngModelChange)="dateChange()" placeholder="Daterangepicker" class="form-control" bsDaterangepicker >
+               
+            </div>
+            
+        </div>
+        <div class="col-md-4 ">
+            <label for="text">Rooms</label>
+
+            <div class="dropdown border dd cursor">
+                <button class="btn dropdown-toggle w-75 dd" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                   <option >Select Rooms</option> {{selRooms}}
+                </button>
+                <ul class="dropdown-menu w-75 ">
+                    <li><a class="dropdown-item dd"*ngFor="let opt of roomsOptArr" (click)="selectRooms(opt)" >{{opt}}</a></li>
+                    <!-- <li><a class="dropdown-item dd" >1 Rooms 2 Adults</a></li>
+                    <li><a class="dropdown-item dd">2 Rooms 4 Adults</a></li> -->
+                </ul>
+            </div>
+        </div>
+        
+
+    </div>
+    <div class="text-center ">
+    <button type="button" class="btn btn-primary  px-5 m-1" routerLink="/hotels/search-hotels" [queryParams]="{city:city,checkIn:checkInDate,checkOut:checkOutDate,rooms:selRooms}" >Search Hotels</button>
+</div>
+</div>
