@@ -14,13 +14,13 @@ baseUrl:string="http://localhost:3000/";
   constructor(private http: HttpClient) { }
   
   getHotelsDataFromServer(endPoint:string,obj:any){
-    let httpParms = new HttpParams()
+    let httpParams = new HttpParams()
                      .set("city",obj.city)
                      .set("checkIn",obj.checkInDate)
                      .set("checkOut",obj.checkOutDate)
 
     const url = this.baseUrl + endPoint;
-    return this.http.get(url,{headers:this.httpHeaders,params:httpParms}) ;             
+    return this.http.get(url,{headers:this.httpHeaders,params:httpParams}) ;             
   }
 
   getDataFromServer(endPoint: string) {

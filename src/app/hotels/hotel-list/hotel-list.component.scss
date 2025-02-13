@@ -1,0 +1,30 @@
+.image-container{
+
+    position: relative;
+    height: 200px;
+    width: 200px;
+    overflow: hidden;
+}
+.image-container img{
+    transition: transform 0.3s;
+}
+.image-container:hover img{
+    transform: scale(1.2);
+}
+.font{
+    font-weight: 700px;
+}
+.msg{
+    font-weight: 700px;
+    color: rgba(241, 102, 21, 0.842);
+}
+.rating{
+    font-size: 15px;
+}
+
+.cursor{
+    cursor: pointer;
+}
+.active{
+    border-bottom: 4px solid #3a3aed;
+}

@@ -1,0 +1,41 @@
+<div class="container  mt-2">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="fw-bold mb-4">Search Filters</h4>
+            <div class="user-rating" *ngIf="filterObj.rating != undefined">
+                <h5>User Rating</h5>
+                <div class="form-check" *ngFor="let item of filterObj.rating; let i=index">
+                    <!-- this code for single filter used @ouput -->
+                    <!-- <input class="form-check-input" type="checkbox" value="" name="rating+{{i}}"
+                        [(ngModel)]="item.isSelected" (ngModelChange)="emitData(item)"> -->
+
+                        <input class="form-check-input" type="checkbox" value="" name="rating+{{i}}"
+                        [(ngModel)]="item.isSelected" (ngModelChange)="emitMultiActionData(item)">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        <span>{{item.filterValue}} ⭐ &nbsp;Rating </span>
+                    </label>
+
+                </div>
+                <div class="price-per-night" *ngIf="filterObj.pricePerNight != undefined">
+                    <h5>Price Per Night</h5>
+                    <div class="form-check" *ngFor="let item of filterObj.pricePerNight; let i=index">
+
+                                            <!-- this code for single filter used @ouput -->
+                        <!-- <input class="form-check-input" type="checkbox" value="" name="pricePerNight+{{i}}"
+                            [(ngModel)]="item.isSelected" (ngModelChange)="emitData(item)"> -->
+
+
+                               <!-- this code for Multi filter used @ouput -->
+                            <input class="form-check-input" type="checkbox" value="" name="pricePerNight+{{i}}"
+                            [(ngModel)]="item.isSelected" (ngModelChange)="emitMultiActionData(item)">
+                        <label class="form-check-label" for="flexCheckChecked">
+                            ₹ {{item.filterRange.min}} - ₹ {{item.filterRange.max}}&nbsp;
+
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
