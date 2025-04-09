@@ -52,9 +52,10 @@ export class HotelListComponent implements OnInit {
     });
   }
 
-  //selected hotel details 
+    //selected hotel details 
   selectHotel(hotelId:string){
-    this.router.navigate(['/hotels/hotel-details'], {queryParams:{id:hotelId}}); // Navigate to hotel details page
+    // Navigate to hotel details page
+    this.router.navigate(['/hotels/hotel-details'], {queryParams:{id:hotelId}}); 
 
   }
   sortHotel(type: string) {

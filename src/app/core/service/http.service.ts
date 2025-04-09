@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,14 @@ baseUrl:string="http://localhost:3000/";
 
 
   }
+  getHotelById(id: any): Observable<any> {
+    console.log('Making API request with ID:', id.toString()); // Debugging
+    return this.http.get<any>(`${this.baseUrl}hotels-details`, {
+      params: new HttpParams().set('id', id.toString())
+    });
+  }
+  
+
+  
 
 }
