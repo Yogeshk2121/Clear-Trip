@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,13 +15,13 @@ baseUrl:string="http://localhost:3000/";
   constructor(private http: HttpClient) { }
   
   getHotelsDataFromServer(endPoint:string,obj:any){
-    let httpParms = new HttpParams()
+    let httpParams = new HttpParams()
                      .set("city",obj.city)
                      .set("checkIn",obj.checkInDate)
                      .set("checkOut",obj.checkOutDate)
 
     const url = this.baseUrl + endPoint;
-    return this.http.get(url,{headers:this.httpHeaders,params:httpParms}) ;             
+    return this.http.get(url,{headers:this.httpHeaders,params:httpParams}) ;             
   }
 
   getDataFromServer(endPoint: string) {
@@ -30,5 +31,14 @@ baseUrl:string="http://localhost:3000/";
 
 
   }
+  getHotelById(id: any): Observable<any> {
+    console.log('Making API request with ID:', id.toString()); // Debugging
+    return this.http.get<any>(`${this.baseUrl}hotels-details`, {
+      params: new HttpParams().set('id', id.toString())
+    });
+  }
+  
+
+  
 
 }

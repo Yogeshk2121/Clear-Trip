@@ -1,1 +1,63 @@
-<p>hotel-list works!</p>
+<div class="container fluid bg-info">
+  <ul class="nav d-flex justify-content-between ">
+    <li class="nav-item ">
+      <a class="nav-link text-dark ms-2 fs-bold">SORT BY:</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-black cursor">Popular</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-black cursor" [ngClass]="selectedType =='Rating' ? 'active':'' "
+        (click)="sortHotel('Rating')">User Rating <span class="text-muted">(Highest First)</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-black cursor" [ngClass]="selectedType =='Highest' ? 'active':'' "
+        (click)="sortHotel('Highest')">Price<span class="text-muted">(Highest First)</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-black cursor" [ngClass]="selectedType =='Lowest' ? 'active':'' "
+        (click)="sortHotel('Lowest')">Price <span class="text-muted">(Lowest First)</span></a>
+    </li>
+  </ul>
+</div>
+
+<div class="container mt-2">
+
+  <div class="row">
+
+    <div class="col-md-3 ">
+      <!-- //using selector load componant and used @ouput decorater to get data -->
+      <app-hotel-filter (emitMultiAction)="getFilterCriteria($event)"></app-hotel-filter>
+
+    </div>
+    <div class="col-md-7 " *ngIf="hotelList && hotelList.length > 0" >
+      <div class="mx-1 border border-primary p-2 d-flex " *ngFor="let item of hotelList" (click)="selectHotel(item.id)">
+        <div class="image-container">
+          <img [src]="item?.media[0]?.url" alt="">
+        </div>
+        <div class=" w-75 ms-1">
+          <h5 class="font">{{item.name}}</h5>
+          <p><span class="text-info font">{{item.locationPersuasion[0]}}</span>|<span
+              class="text-muted">{{item.locationPersuasion[1]}}</span></p>
+          <p class="msg">Prime lacation with delicious braekfast</p>
+        </div>
+        <div class=" w-25 text-end">
+          <h5 class="rating ">{{item?.reviewSummary?.ratingText}}<span
+              class="badge bg-info">{{item?.reviewSummary?.cumulativeRating}}</span></h5>
+          <p class="text-muted">({{item?.reviewSummary?.totalRatingCount}} rating)</p>
+          <p class="text-decoration-line-through mt-2">₹{{item?.priceDetail?.discountedPriceWithTax}}</p>
+          <h6 class="mb-0">₹{{item?.priceDetail?.discountedPrice}}</h6>
+          <p class="text-muted">₹{{item?.priceDetail?.totalTax}} taxes and fees per Night</p>
+
+
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-8" *ngIf="hotelList && hotelList.length == 0">
+      <div class="alert alert-danger" role="alert">
+        No Hotels found! </div>
+    </div>
+
+  </div>
+</div>
